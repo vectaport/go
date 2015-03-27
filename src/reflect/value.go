@@ -2157,14 +2157,14 @@ func (v Value) Convert(t Type) Value {
 	if v.flag&flagMethod != 0 {
 		v = makeMethodValue("Convert", v)
 	}
-	op := convertOp(t.common(), v.typ)
+	op := ConvertOp(t.common(), v.typ)
 	if op == nil {
 		panic("reflect.Value.Convert: value of type " + v.typ.String() + " cannot be converted to type " + t.String())
 	}
 	return op(v, t)
 }
 
-// convertOp returns the function to convert a value of type src
+// ConvertOp returns the function to convert a value of type src
 // to a value of type dst. If the conversion is illegal, convertOp returns nil.
 func ConvertOp(dst, src *rtype) func(Value, Type) Value {
 	switch src.Kind() {
