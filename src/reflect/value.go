@@ -2166,7 +2166,7 @@ func (v Value) Convert(t Type) Value {
 
 // convertOp returns the function to convert a value of type src
 // to a value of type dst. If the conversion is illegal, convertOp returns nil.
-func convertOp(dst, src *rtype) func(Value, Type) Value {
+func ConvertOp(dst, src *rtype) func(Value, Type) Value {
 	switch src.Kind() {
 	case Int, Int8, Int16, Int32, Int64:
 		switch dst.Kind() {
